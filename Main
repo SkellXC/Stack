@@ -1,0 +1,54 @@
+class Stack:
+    def __init__(self,array):
+        self.array = array
+        self.top = len(array)
+        self.length = len(array)
+        self.pointer = -1
+    def read(self):
+        for item in self.array:
+            print(item)
+    def peek(self):
+        print(f"Top: {self.array[self.pointer]}")
+    def isEmpty(self):
+        return self.pointer == -1
+
+    def isFull(self):
+        return self.pointer == len(self.array)
+ 
+    def push(self,item):
+        self.pointer += 1
+        if self.isFull():
+            self.pointer -= 1
+            print('Cannot push to stack')
+            return
+        
+        self.array[self.pointer] = item
+        print(f'Pushed {item} to stack')
+
+    def pop(self):
+        if self.isEmpty():
+            print('The stack is empty')
+            return
+        poppedItem = self.array[self.pointer]
+        self.array[self.pointer] = None
+        self.pointer -= 1
+        print(f'Popped {poppedItem} from the stack')
+
+'''Tests:
+arr = [None for x in range(10)]
+
+myStack = Stack(arr)
+
+print(myStack.length)
+myStack.peek()
+for x in range(0,11):
+    myStack.push(x)
+print(myStack.top)
+myStack.peek()
+myStack.read()
+myStack.pop()
+myStack.peek()
+myStack.read()
+for x in range(12):
+    myStack.pop()
+'''
